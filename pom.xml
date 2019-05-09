@@ -27,20 +27,11 @@
         <rain.version>1.0.1</rain.version>
         <rain.common.version>1.0.1</rain.common.version>
         <rain.console.version>1.0.1</rain.console.version>
-
-<!--        <skipTests>true</skipTests>
-         maven方式跳过maven test, 等同$ mvn package -Dmaven.test.skip=true
-        <maven.test.skip>true</maven.test.skip>
-        &lt;!&ndash; surefire plugin方式跳过maven test， 等同$ mvn package -DskipTests &ndash;&gt;
-        <skipTests>true</skipTests>-->
+        <!-- 打包时忽略测试 -->
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -48,7 +39,7 @@
         </dependency>
     </dependencies>
 
-    <!-- 统一管理 -->
+    <!-- 统一管理jar版本号 -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -67,13 +58,13 @@
                     <!-- 热部署 -->
                     <fork>true</fork>
                 </configuration>
-                <executions>
+                <!--<executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions>-->
             </plugin>
         </plugins>
     </build>
