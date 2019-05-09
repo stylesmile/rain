@@ -27,10 +27,15 @@
         <rain.version>1.0.1</rain.version>
         <rain.common.version>1.0.1</rain.common.version>
         <rain.console.version>1.0.1</rain.console.version>
+
+<!--        <skipTests>true</skipTests>
+         maven方式跳过maven test, 等同$ mvn package -Dmaven.test.skip=true
+        <maven.test.skip>true</maven.test.skip>
+        &lt;!&ndash; surefire plugin方式跳过maven test， 等同$ mvn package -DskipTests &ndash;&gt;
+        <skipTests>true</skipTests>-->
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -43,11 +48,32 @@
         </dependency>
     </dependencies>
 
+    <!-- 统一管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.15</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 热部署 -->
+                    <fork>true</fork>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -57,6 +83,12 @@
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </repository>
     </repositories>
     <!--插件仓库-->

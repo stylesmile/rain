@@ -1,13 +1,13 @@
-package com.raincommon;
+package com.stylesmile.console;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RainCommonApplication {
+public class RainConsoleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RainCommonApplication.class, args);
+        SpringApplication.run(RainConsoleApplication.class, args);
     }
 
 }

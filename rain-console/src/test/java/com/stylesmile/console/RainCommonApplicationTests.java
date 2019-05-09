@@ -1,4 +1,4 @@
-package com.raincommon;
+package com.stylesmile.console;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
