@@ -24,9 +24,9 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <rain.version>1.0.1</rain.version>
-        <rain.common.version>1.0.1</rain.common.version>
-        <rain.console.version>1.0.1</rain.console.version>
+        <rain.version>1.1.0</rain.version>
+        <rain.common.version>1.1.0</rain.common.version>
+        <rain.console.version>1.1.0</rain.console.version>
         <!-- 打包时忽略测试 -->
         <skipTests>true</skipTests>
     </properties>
