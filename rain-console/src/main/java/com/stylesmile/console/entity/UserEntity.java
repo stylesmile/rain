@@ -1,4 +1,4 @@
-package com.example.bootjpa.entity;
+package com.stylesmile.console.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

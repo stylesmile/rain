@@ -1,6 +1,7 @@
-package com.example.bootjpa.repository;
+package com.stylesmile.console.repository;
 
-import com.example.bootjpa.entity.UserEntity;
+import com.stylesmile.console.entity.UserEntity;
+import com.stylesmile.console.system.repository.BaseJpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.bootjpa.repository;
+package com.stylesmile.console.system.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

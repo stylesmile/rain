@@ -42,11 +42,11 @@
     <!-- 统一管理jar版本号 -->
     <dependencyManagement>
         <dependencies>
-            <dependency>
+            <!--<dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.15</version>
-            </dependency>
+                &lt;!&ndash;<version>8.0.15</version>&ndash;&gt;
+            </dependency>-->
         </dependencies>
     </dependencyManagement>
     <build>
@@ -75,10 +75,10 @@
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </repository>
     </repositories>
@@ -89,10 +89,10 @@
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
         </pluginRepository>
     </pluginRepositories>
