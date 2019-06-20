@@ -15,14 +15,14 @@ import java.util.List;
  * @author chenye
  * @date 2019/1/8 21:23
  */
-public interface SysMenuService extends BaseService<SysMenu> {
+public interface SysMenuService  {
 
     /**
      * 查询菜单列表
      *
      * @return List<SysMenu>
      */
-    List<SysMenu> getList();
+    List<SysMenuEntity> getList();
 
     /**
      * 修改菜单

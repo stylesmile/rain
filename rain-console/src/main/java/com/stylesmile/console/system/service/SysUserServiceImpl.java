@@ -1,16 +1,15 @@
 package com.stylesmile.console.system.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.console.system.entity.SysUserEntity;
-import com.stylesmile.console.system.service.common.BaseServiceImpl;
+import com.stylesmile.console.system.query.SysUserQuery;
+import com.stylesmile.console.system.repository.SysUserRepository;
 import com.stylesmile.constant.SessionConstant;
 import com.stylesmile.constant.UserConstant;
-import com.stylesmile.system.entity.SysUser;
-import com.stylesmile.system.mapper.SysUserMapper;
-import com.stylesmile.system.query.SysUserQuery;
 import com.stylesmile.util.Result;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +20,9 @@ import javax.servlet.http.HttpSession;
  * @date 2019/1/8
  */
 @Service("sysUserService")
-public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl  implements SysUserService {
+    @Resource
+    SysUserRepository sysUserRepository;
     /**
      * @param httpServletRequest
      * @return SysUser
@@ -31,7 +32,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         HttpSession session = httpServletRequest.getSession();
         //获取登录的session信息
         Object user = session.getAttribute(SessionConstant.LOGIN_USER);
-        return (SysUser) user;
+        return (SysUserEntity) user;
     }
 
     /**
@@ -43,14 +44,14 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session) {
-        SysUser user = baseMapper.getSysUserByNameAndPassword(username);
+        SysUserEntity user = sysUserRepository.getSysUserByNameAndPassword(username);
         if (null != user && password.equals(user.getPassword())) {
             session.setAttribute(SessionConstant.LOGIN_USER, user);
             return Result.successMessage("登陆成功");
         } else {
             //数据库查不到超级管理员 用户，超级管理员用户就读取系统中写死的用户名，密码
             if (null == user && UserConstant.SUPPER_ADMIN.equals(username) && UserConstant.SUPPER_ADMIN_PASSWORD.equals(password)) {
-                session.setAttribute(SessionConstant.LOGIN_USER, new SysUser(username));
+                session.setAttribute(SessionConstant.LOGIN_USER, new SysUserEntity(username));
                 return Result.successMessage("登陆成功");
             }
             return Result.failMessage("用户名或者密码错误");
@@ -64,8 +65,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      * @return Page
      */
     @Override
-    public Page<SysUser> getUserList(SysUserQuery sysUserQuery) {
-        return baseMapper.getUserList(sysUserQuery);
+    public Page<SysUserEntity> getUserList(SysUserQuery sysUserQuery) {
+        return sysUserRepository.getUserList(sysUserQuery);
     }
 
     /**
@@ -75,8 +76,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      * @return Boolean
      */
     @Override
-    public Boolean updateUser(SysUser user) {
-        return baseMapper.updateUser(user);
+    public Boolean updateUser(SysUserEntity user) {
+        return sysUserRepository.updateUser(user);
     }
 
     /**
@@ -87,7 +88,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public Boolean deleteUser(Integer id) {
-        return baseMapper.deleteUser(id);
+        return sysUserRepository.deleteUser(id);
     }
 
     /**
@@ -99,7 +100,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public Integer queryPermission(String url, Integer userId) {
-        return baseMapper.queryPermission(url, userId);
+        return sysUserRepository.queryPermission(url, userId);
     }
 
 

@@ -2,11 +2,18 @@ package com.stylesmile.console.system.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.stylesmile.common.service.BaseServiceImpl;
+import com.stylesmile.console.system.entity.SysRoleEntity;
+import com.stylesmile.console.system.query.SysRoleQuery;
+import com.stylesmile.console.system.repository.SysRoleRepository;
+import com.stylesmile.console.system.repository.SysUserRoleRepository;
 import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.system.entity.SysRole;
 import com.stylesmile.system.mapper.SysRoleMapper;
 import com.stylesmile.system.query.SysRoleQuery;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * 角色 RoleService
@@ -15,16 +22,18 @@ import org.springframework.stereotype.Service;
  * @date 2019/1/8
  */
 @Service("sysRoleService")
-public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
+public class SysRoleServiceImpl implements SysRoleService {
+    @Resource
+    SysRoleRepository sysRoleRepository;
 
     @Override
-    public Page<SysRole> getRoleList(SysRoleQuery sysRoleQuery) {
-        return baseMapper.getRoleList(sysRoleQuery);
+    public Page<SysRoleEntity> getRoleList(SysRoleQuery sysRoleQuery) {
+        return sysRoleRepository.getRoleList(sysRoleQuery);
     }
 
     @Override
-    public Boolean updateRole(SysRole user) {
-        return baseMapper.updateRole(user);
+    public Boolean updateRole(SysRoleEntity sysRoleEntity) {
+        return sysRoleRepository.updateRole(sysRoleEntity);
     }
 
     /**
@@ -35,7 +44,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
      */
     @Override
     public Boolean deleteRole(String id) {
-        return baseMapper.deleteRole(id);
+        return sysRoleRepository.deleteRole(id);
     }
 
     /**
@@ -46,7 +55,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
      */
     @Override
     public Integer checkDuplicate(String code) {
-        return baseMapper.checkDuplicate(code);
+        return sysRoleRepository.checkDuplicate(code);
     }
 
 }

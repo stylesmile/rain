@@ -1,6 +1,7 @@
 package com.stylesmile.console.system.repository;
 
 import com.stylesmile.console.system.entity.SysDepartEntity;
+import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -11,14 +12,14 @@ import org.springframework.stereotype.Repository;
  * @date 2018/12/31
  */
 @Repository
-public interface SysRoleMapper extends BaseJpaRepository<SysDepartEntity, String> {
+public interface SysRoleRepository extends BaseJpaRepository<SysDepartEntity, String> {
     /**
      * 查询
      *
      * @param sysRoleQuery 查询条件
      * @return Page
      */
-    Page<SysDepartEntity> getRoleList(SysRoleQuery sysRoleQuery);
+    Page<SysRoleEntity> getRoleList(SysRoleQuery sysRoleQuery);
 
     /**
      * 修改角色

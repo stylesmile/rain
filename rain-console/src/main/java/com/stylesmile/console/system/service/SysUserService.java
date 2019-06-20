@@ -1,12 +1,8 @@
 package com.stylesmile.console.system.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.stylesmile.common.service.BaseService;
 import com.stylesmile.console.system.entity.SysMenuEntity;
+import com.stylesmile.console.system.entity.SysUserEntity;
 import com.stylesmile.console.system.query.SysUserQuery;
-import com.stylesmile.console.system.service.common.BaseService;
-import com.stylesmile.system.entity.SysUser;
-import com.stylesmile.system.query.SysUserQuery;
 import com.stylesmile.util.Result;
 import org.springframework.data.domain.Page;
 
@@ -19,9 +15,9 @@ import javax.servlet.http.HttpSession;
  * @author chenye
  * @date 2019/1/8
  */
-public interface SysUserService extends BaseService<SysMenuEntity> {
+public interface SysUserService {
 
-    SysMenuEntity getSessionUser(HttpServletRequest httpServletRequest);
+    SysUserEntity getSessionUser(HttpServletRequest httpServletRequest);
 
     /**
      * 通过用户名密码查询用户
@@ -39,7 +35,7 @@ public interface SysUserService extends BaseService<SysMenuEntity> {
      * @param sysUserQuery 条件
      * @return Page
      */
-    Page<SysMenuEntity> getUserList(SysUserQuery sysUserQuery);
+    Page<SysUserEntity> getUserList(SysUserQuery sysUserQuery);
 
     /**
      * 修改用户
@@ -47,7 +43,7 @@ public interface SysUserService extends BaseService<SysMenuEntity> {
      * @param user 用户信息
      * @return Boolean
      */
-    Boolean updateUser(SysMenuEntity user);
+    Boolean updateUser(SysUserEntity user);
 
     /**
      * 删除用户

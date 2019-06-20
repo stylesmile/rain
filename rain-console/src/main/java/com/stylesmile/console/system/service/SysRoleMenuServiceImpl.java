@@ -1,9 +1,6 @@
 package com.stylesmile.console.system.service;
 
-import com.stylesmile.common.service.BaseServiceImpl;
-import com.stylesmile.console.system.service.common.BaseServiceImpl;
-import com.stylesmile.system.entity.SysRoleMenu;
-import com.stylesmile.system.mapper.SysRoleMenuMapper;
+import com.stylesmile.console.system.entity.SysRoleMenuEntity;
 import com.stylesmile.util.ConvertUtil;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +14,7 @@ import java.util.List;
  * @date 2019/1/8
  */
 @Service("sysRoleMenuService")
-public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements SysRoleMenuService {
+public class SysRoleMenuServiceImpl implements SysRoleMenuService {
 
     /**
      * 角色增加菜单
@@ -31,7 +28,7 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuMapper, S
         //待删除
         List<Integer> delIds = new ArrayList<>();
         //待新增的list
-        List<SysRoleMenu> sysRoleMenuList = new ArrayList<>();
+        List<SysRoleMenuEntity> sysRoleMenuList = new ArrayList<>();
         //数据库中该角色的menuId 集合
         List<Integer> dbs = getRoleMenuList(roleId);
 
@@ -49,7 +46,7 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuMapper, S
         //待新增
         for (Integer id : all) {
             if (!dbs.contains(id)) {
-                SysRoleMenu sysRoleMenu = new SysRoleMenu(roleId, id);
+                SysRoleMenuEntity sysRoleMenu = new SysRoleMenuEntity(roleId, id);
                 sysRoleMenuList.add(sysRoleMenu);
             }
         }

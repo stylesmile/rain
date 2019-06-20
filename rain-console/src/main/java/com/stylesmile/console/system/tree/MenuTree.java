@@ -1,6 +1,6 @@
 package com.stylesmile.console.system.tree;
 
-import com.stylesmile.system.entity.SysMenu;
+import com.stylesmile.console.system.entity.SysMenuEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +23,7 @@ public class MenuTree {
     private List<MenuTree> children = new ArrayList<>();
     private MenuTree parent = null;
 
-    public static MenuTree listToTree(List<SysMenu> sysMenuList) {
+    public static MenuTree listToTree(List<SysMenuEntity> sysMenuList) {
         //菜单树，根节点id为0
         MenuTree menuTree = new MenuTree(0);
         //构建树节点
@@ -34,15 +34,15 @@ public class MenuTree {
     /**
      * 构建树节点
      *
-     * @param parent 父节点
+     * @param parent      父节点
      * @param sysMenuList list数据
      */
-    private static void buildMenuTree(MenuTree parent, List<SysMenu> sysMenuList) {
+    private static void buildMenuTree(MenuTree parent, List<SysMenuEntity> sysMenuList) {
         Integer pid = parent.getId();
         //添加到子节点的待删除数据
-        List<SysMenu> dels = new ArrayList<>();
+        List<SysMenuEntity> dels = new ArrayList<>();
         //找到子节点，放进children
-        for (SysMenu sysMenu : sysMenuList) {
+        for (SysMenuEntity sysMenu : sysMenuList) {
             if (pid.intValue() == sysMenu.getParentId().intValue()) {
                 MenuTree menuTree = new MenuTree(sysMenu);
                 parent.children.add(menuTree);
@@ -62,7 +62,7 @@ public class MenuTree {
         this.id = id;
     }
 
-    private MenuTree(SysMenu sysMenu) {
+    private MenuTree(SysMenuEntity sysMenu) {
         this.id = sysMenu.getId();
         this.parentId = sysMenu.getParentId();
         this.name = sysMenu.getName();

@@ -5,10 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +17,10 @@ import java.util.List;
 /**
  * Service层基类
  *
- * @author carfield
+ * @author chenye
+ * @date 2019/06/19
  */
-public abstract class BaseServiceImpl<M, E, F, ID extends Serializable> implements BaseService<M, F, ID> {
+public abstract class BaseServiceImpl<M, E, ID extends Serializable> implements BaseService<M, E, ID> {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -87,25 +85,25 @@ public abstract class BaseServiceImpl<M, E, F, ID extends Serializable> implemen
     }
 
     @Override
-    public long count(F filter) {
+    public long count(E filter) {
         return this.repository.count(this.toFilter(filter));
     }
 
     @Override
     public boolean exists(ID id) {
-        return this.repository.exists(id);
+        return this.repository.exists((Example)id);
     }
 
     @Override
-    public List<M> list(F filter, Sort sort) {
-        List<E> entitys = this.repository.findAll(this.toFilter(filter), sort);
+    public List<M> list(E filter, Sort sort) {
+        List<E> entitys = this.repository.findAll(filter, sort);
         List<M> views = this.toModels(entitys);
         return views;
     }
 
     @Override
-    public Page<M> search(F filter, Pageable pageable) {
-        Page<E> entitys = this.repository.findAll(this.toFilter(filter), pageable);
+    public Page<M> search(E filter, Pageable pageable) {
+        Page<E> entitys = this.repository.findAll(filter, pageable);
         List<M> content = this.toModels(entitys);
         Page<M> views = new PageImpl<M>(content, pageable, entitys.getTotalElements());
         return views;
@@ -123,13 +121,13 @@ public abstract class BaseServiceImpl<M, E, F, ID extends Serializable> implemen
         return views;
     }
 
-    protected abstract E toEntity(M model);
-
-    protected abstract M toView(E entity);
-
-    protected abstract ID getID(M model);
-
-    protected abstract Specification<E> toFilter(F filter);
+//    protected abstract E toEntity(M model);
+//
+//    protected abstract M toView(E entity);
+//
+//    protected abstract ID getID(M model);
+//
+//    protected abstract Specification<E> toFilter(E filter);
 
     protected void beforeCreate(M model, E entity) {
     }

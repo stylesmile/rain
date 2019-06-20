@@ -1,7 +1,8 @@
 package com.stylesmile.console.system.service;
 
-import com.stylesmile.common.service.BaseService;
 import com.stylesmile.console.system.entity.SysDepartEntity;
+import com.stylesmile.console.system.query.SysDepartQuery;
+import com.stylesmile.console.system.service.common.BaseService;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @author chenye
  * @date 2019/1/8 21:23
  */
-public interface SysDepartService extends BaseService<SysDepartEntity> {
+public interface SysDepartService extends BaseService<SysDepartEntity, SysDepartQuery,String > {
 
     /**
      * 查询部门列表

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  * @author chenye
  * @date 2019/1/8
  */
-public interface SysUserRoleService extends BaseService<SysUserRoleEntity> {
+public interface SysUserRoleService {
 
     /**
      * 用户增加角色

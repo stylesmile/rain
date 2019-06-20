@@ -8,7 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author carfield
+ * Service层基类
+ *
+ * @author chenye
+ * @date 2019/06/19
  */
 public interface BaseService<M, F, ID extends Serializable> {
 

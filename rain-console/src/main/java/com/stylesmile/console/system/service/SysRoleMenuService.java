@@ -11,7 +11,7 @@ import java.util.List;
  * @author chenye
  * @date 2019/1/8
  */
-public interface SysRoleMenuService extends BaseService<SysRoleMenuEntity> {
+public interface SysRoleMenuService  {
 
     /**
      * 角色增加菜单

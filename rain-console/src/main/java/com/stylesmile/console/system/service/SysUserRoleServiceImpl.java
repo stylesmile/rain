@@ -1,5 +1,6 @@
 package com.stylesmile.console.system.service;
 
+import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.entity.SysUserRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.repository.SysUserRoleRepository;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Service("sysUserRoleService")
-public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, SysUserRole> implements SysUserRoleService {
+public class SysUserRoleServiceImpl implements SysUserRoleService {
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     SysUserRoleRepository sysUserRoleRepository;
@@ -44,13 +45,13 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
         if (sysUserRoleList.size() == 0) {
             return false;
         }
-        this.saveBatch(sysUserRoleList);
+        sysUserRoleRepository.saveAll(sysUserRoleList);
         return true;
     }
 
     @Override
     public Boolean deleteRole(Integer id) {
-        return sysUserRoleMapper.deleteById(id) > 0 ? true : false;
+        return sysUserRoleRepository.deleteById(id) > 0 ? true : false;
     }
 
     /**
@@ -60,7 +61,7 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleMapper, S
      * @return Page<SysRole>
      */
     @Override
-    public Page<SysUserRoleEntity> getUserRoleList(SysRoleQuery sysRoleQuery) {
+    public Page<SysRoleEntity> getUserRoleList(SysRoleQuery sysRoleQuery) {
         return sysUserRoleRepository.getUserRoleList(sysRoleQuery);
     }
 }

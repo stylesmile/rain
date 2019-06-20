@@ -1,6 +1,6 @@
 package com.stylesmile.console.system.repository;
 
-import com.stylesmile.console.system.entity.SysDepartEntity;
+import com.stylesmile.console.system.entity.SysUserEntity;
 import com.stylesmile.console.system.query.SysUserQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -13,14 +13,14 @@ import org.springframework.stereotype.Repository;
  * @date 2018/11/18
  */
 @Repository
-public interface SysUserRepository extends BaseJpaRepository<SysDepartEntity, String> {
+public interface SysUserRepository extends BaseJpaRepository<SysUserEntity, String> {
     /**
      * 通过用户名密码查询用户
      *
      * @param username 用户名
      * @return SysUser
      */
-    SysDepartEntity getSysUserByNameAndPassword(@Param("username") String username);
+    SysUserEntity getSysUserByNameAndPassword(@Param("username") String username);
 
     /**
      * 编辑用户
@@ -28,7 +28,7 @@ public interface SysUserRepository extends BaseJpaRepository<SysDepartEntity, St
      * @param user 用户
      * @return Boolean
      */
-    Boolean updateUser(SysDepartEntity user);
+    Boolean updateUser(SysUserEntity user);
 
     /**
      * 删除
@@ -44,7 +44,7 @@ public interface SysUserRepository extends BaseJpaRepository<SysDepartEntity, St
      * @param sysUserQuery 条件
      * @return Page
      */
-    Page<SysDepartEntity> getUserList(SysUserQuery sysUserQuery);
+    Page<SysUserEntity> getUserList(SysUserQuery sysUserQuery);
 
     /**
      * 根据url查询用户是否有该url的权限

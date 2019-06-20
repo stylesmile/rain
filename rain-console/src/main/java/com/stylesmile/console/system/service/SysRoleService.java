@@ -1,9 +1,7 @@
 package com.stylesmile.console.system.service;
 
-import com.stylesmile.common.service.BaseService;
 import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
-import com.stylesmile.console.system.service.common.BaseService;
 import org.springframework.data.domain.Page;
 
 /**
@@ -11,7 +9,7 @@ import org.springframework.data.domain.Page;
  * @Author: StyleSmile
  * @Date: 2019/1/8
  */
-public interface SysRoleService extends BaseService<SysRoleEntity> {
+public interface SysRoleService {
     /**
      * 查询角色
      *

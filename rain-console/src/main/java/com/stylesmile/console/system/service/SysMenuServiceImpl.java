@@ -2,6 +2,8 @@ package com.stylesmile.console.system.service;
 
 import com.stylesmile.common.service.BaseServiceImpl;
 import com.stylesmile.console.system.entity.SysMenuEntity;
+import com.stylesmile.console.system.repository.SysMenuRepository;
+import com.stylesmile.console.system.repository.SysUserRepository;
 import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.console.system.tree.MenuTree;
 import com.stylesmile.constant.UserConstant;
@@ -22,8 +24,10 @@ import java.util.List;
  * @date 2019/1/8
  */
 @Service("sysMenuService")
-public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {
+public class SysMenuServiceImpl implements SysMenuService {
 
+    @Resource
+    SysMenuRepository sysMenuRepository;
     @Resource
     SysUserService sysUserService;
 
@@ -33,8 +37,8 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
      * @return List<SysMenu>
      */
     @Override
-    public List<SysMenu> getList() {
-        return baseMapper.getMenuList();
+    public List<SysMenuEntity> getList() {
+        return sysMenuRepository.getMenuList();
     }
 
     /**
@@ -44,8 +48,8 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
      * @return Boolean
      */
     @Override
-    public Boolean updateMenu(SysMenu sysMenu) {
-        return baseMapper.updateMenu(sysMenu);
+    public Boolean updateMenu(SysMenuEntity sysMenu) {
+        return sysMenuRepository.updateMenu(sysMenu);
     }
 
     /**
@@ -56,7 +60,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
      */
     @Override
     public Boolean deleteMenu(String id) {
-        return baseMapper.deleteMenu(id);
+        return sysMenuRepository.deleteMenu(id);
     }
 
     /**
@@ -71,7 +75,7 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
         SysMenuEntity sysUser = sysUserService.getSessionUser(httpServletRequest);
         Integer userId = sysUser.getUsername() == UserConstant.SUPPER_ADMIN ? sysUser.getId() : null;
         //通过用户id获取菜单list
-        List<SysMenu> sysMenuList = baseMapper.getMenuListByUserId(userId);
+        List<SysMenuEntity> sysMenuList = sysMenuRepository.getMenuListByUserId(userId);
         //list to tree
         return MenuTree.listToTree(sysMenuList);
     }

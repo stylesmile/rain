@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2018/11/18
  */
 @Repository
-public interface SysDepartMapper extends BaseJpaRepository<SysDepartEntity, String> {
+public interface SysDepartRepository extends BaseJpaRepository<SysDepartEntity, String> {
     /**
      * 查询全部部门
      *
