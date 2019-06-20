@@ -1,5 +1,6 @@
 package com.stylesmile.console.system.entity;
 
+import com.stylesmile.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysUserRoleEntity implements java.io.Serializable {
+public class SysUserRoleEntity extends BaseEntity {
 
     /**
      * 主键

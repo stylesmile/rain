@@ -1,6 +1,7 @@
-package com.stylesmile.console.entity;
+package com.stylesmile.console.system.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.stylesmile.entity.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,7 +19,7 @@ import java.util.Date;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class UserEntity {
+public class UserEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")

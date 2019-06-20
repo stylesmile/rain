@@ -1,10 +1,7 @@
 package com.stylesmile.console.system.service;
 
-import com.stylesmile.common.service.BaseService;
 import com.stylesmile.console.system.entity.SysMenuEntity;
 import com.stylesmile.console.system.tree.MenuTree;
-import com.stylesmile.system.entity.SysMenu;
-import com.stylesmile.system.tree.MenuTree;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -15,7 +12,7 @@ import java.util.List;
  * @author chenye
  * @date 2019/1/8 21:23
  */
-public interface SysMenuService  {
+public interface SysMenuService {
 
     /**
      * 查询菜单列表

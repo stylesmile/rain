@@ -1,10 +1,10 @@
 package com.stylesmile.console.system.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.stylesmile.system.entity.SysRole;
-import com.stylesmile.system.query.SysRoleQuery;
-import com.stylesmile.system.service.SysUserRoleService;
+import com.stylesmile.console.system.entity.SysRoleEntity;
+import com.stylesmile.console.system.query.SysRoleQuery;
+import com.stylesmile.console.system.service.SysUserRoleService;
 import com.stylesmile.util.Result;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,7 +48,7 @@ public class SysUserRoleController {
      */
     @GetMapping(BASE_URL_PATH + "/userRoleList.json")
     public Result selectRolePage(SysRoleQuery sysRoleQuery) {
-        Page<SysRole> page = sysUserRoleService.getUserRoleList(sysRoleQuery);
+        Page<SysRoleEntity> page = sysUserRoleService.getUserRoleList(sysRoleQuery);
         return Result.success(page);
     }
 

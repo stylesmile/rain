@@ -1,9 +1,12 @@
 package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.system.entity.SysRoleMenuEntity;
+import com.stylesmile.console.system.repository.SysRoleMenuRepository;
+import com.stylesmile.console.system.repository.SysRoleRepository;
 import com.stylesmile.util.ConvertUtil;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +18,11 @@ import java.util.List;
  */
 @Service("sysRoleMenuService")
 public class SysRoleMenuServiceImpl implements SysRoleMenuService {
+
+    @Resource
+    SysRoleRepository sysRoleRepository;
+    @Resource
+    SysRoleMenuRepository sysRoleMenuRepository;
 
     /**
      * 角色增加菜单
@@ -41,7 +49,7 @@ public class SysRoleMenuServiceImpl implements SysRoleMenuService {
         }
         if (delIds.size() > 0) {
             //批量删除
-            this.removeByIds(delIds);
+            sysRoleRepository.deleteByIds(delIds);
         }
         //待新增
         for (Integer id : all) {
@@ -52,19 +60,19 @@ public class SysRoleMenuServiceImpl implements SysRoleMenuService {
         }
         if (sysRoleMenuList.size() > 0) {
             //批量新增
-            this.saveBatch(sysRoleMenuList);
+            sysRoleMenuRepository.saveAll(sysRoleMenuList);
         }
         return true;
     }
 
     /**
-     * 通过角色id 查询该用户拥有的菜单
+     * 通过角色id 查询该角色拥有的菜单
      *
      * @param roleId 角色id
      * @return List<SysRoleMenu>
      */
     @Override
     public List<Integer> getRoleMenuList(Integer roleId) {
-        return baseMapper.getRoleMenuList(roleId);
+        return sysRoleRepository.getRoleMenuList(roleId);
     }
 }

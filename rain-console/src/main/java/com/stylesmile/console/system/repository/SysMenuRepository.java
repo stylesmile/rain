@@ -1,6 +1,7 @@
 package com.stylesmile.console.system.repository;
 
 import com.stylesmile.console.system.entity.SysDepartEntity;
+import com.stylesmile.console.system.entity.SysMenuEntity;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * @date 2018/11/18
  */
 @Repository
-public interface SysMenuRepository extends BaseJpaRepository<SysDepartEntity, String> {
+public interface SysMenuRepository extends BaseJpaRepository<SysMenuEntity, String> {
     /**
      * 查询全部菜单
      *
@@ -25,7 +26,7 @@ public interface SysMenuRepository extends BaseJpaRepository<SysDepartEntity, St
      * @param userId 用户id
      * @return List<SysMenu>
      */
-    List<SysDepartEntity> getMenuListByUserId(@Param("userId") Integer userId);
+    List<SysMenuEntity> getMenuListByUserId(@Param("userId") Integer userId);
 
     /**
      * 更新菜单

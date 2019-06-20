@@ -5,13 +5,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ValidationException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,23 +20,19 @@ import java.util.List;
  * @author chenye
  * @date 2019/06/19
  */
-public abstract class BaseServiceImpl<M, E, ID extends Serializable> implements BaseService<M, E, ID> {
+public abstract class BaseServiceImpl<M, Q, ID extends Serializable> implements BaseService<M, Q, ID> {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired(required = false)
-    protected BaseJpaRepository<E, ID> repository;
+    protected BaseJpaRepository<M, ID> repository;
 
 
     @Transactional
     @Override
-    public M create(M model) {
+    public M save(M model) {
         logger.debug("create object: {}", model.toString());
-        E entity = this.toEntity(model);
-        this.beforeCreate(model, entity);
-        entity = this.repository.save(entity);
-        this.afterCreate(model, entity);
-        return this.toView(entity);
+        return repository.save(model);
     }
 
     @Transactional
@@ -46,7 +42,7 @@ public abstract class BaseServiceImpl<M, E, ID extends Serializable> implements 
         M model = this.detail(id);
         if (model != null) {
             this.beforeDelete(model);
-            this.repository.delete((E) id);
+            this.repository.delete((M) id);
             this.afterDelete(model);
             return 1L;
         }
@@ -55,20 +51,18 @@ public abstract class BaseServiceImpl<M, E, ID extends Serializable> implements 
 
     @Transactional
     @Override
-    public M modify(M target) {
-        ID id = this.getID(target);
-        if (id == null) {
-            throw new ValidationException("id不能为空！");
-        }
-        logger.debug("id: {}", id);
-        E entity = this.repository.getOne(id);
-        if (entity != null) {
-            this.beforeModify(target, entity);
-            entity = this.repository.save(entity);
-            this.afterModify(target, entity);
-            return this.toView(entity);
-        }
+    public Long deleteByIds(List<ID> ids) {
+        //repository.deleteAll(ids);
         throw new ValidationException("数据异常或指定id不存在");
+    }
+
+    @Transactional
+    @Override
+    public M modify(M target) {
+        this.beforeModify(target);
+        target = this.repository.save(target);
+        this.afterModify(target);
+        return target;
     }
 
     /**
@@ -76,63 +70,28 @@ public abstract class BaseServiceImpl<M, E, ID extends Serializable> implements 
      */
     @Override
     public M detail(ID id) {
-        E e = this.repository.getOne(id);
-        if (e != null) {
-            M v = this.toView(e);
-            return v;
-        }
+        M e = this.repository.getOne(id);
+        return e;
+    }
+
+
+    @Override
+    public List<M> list(Q query, Sort sort) {
+        //return entitys = this.repository.findAll(query, sort);
         return null;
     }
 
     @Override
-    public long count(E filter) {
-        return this.repository.count(this.toFilter(filter));
+    public Page<M> search(Q query, Pageable pageable) {
+        //return entitys = this.repository.findAll(query, sort);
+        return null;
     }
 
-    @Override
-    public boolean exists(ID id) {
-        return this.repository.exists((Example)id);
+
+    protected void beforeCreate(M model) {
     }
 
-    @Override
-    public List<M> list(E filter, Sort sort) {
-        List<E> entitys = this.repository.findAll(filter, sort);
-        List<M> views = this.toModels(entitys);
-        return views;
-    }
-
-    @Override
-    public Page<M> search(E filter, Pageable pageable) {
-        Page<E> entitys = this.repository.findAll(filter, pageable);
-        List<M> content = this.toModels(entitys);
-        Page<M> views = new PageImpl<M>(content, pageable, entitys.getTotalElements());
-        return views;
-    }
-
-    protected List<M> toModels(Iterable<E> entities) {
-        List<M> views = new ArrayList<M>();
-        if (entities != null) {
-            for (E e : entities) {
-                M v = this.toView(e);
-                views.add(v);
-            }
-        }
-        this.afterList(views);
-        return views;
-    }
-
-//    protected abstract E toEntity(M model);
-//
-//    protected abstract M toView(E entity);
-//
-//    protected abstract ID getID(M model);
-//
-//    protected abstract Specification<E> toFilter(E filter);
-
-    protected void beforeCreate(M model, E entity) {
-    }
-
-    protected void afterCreate(M model, E entity) {
+    protected void afterCreate(M model) {
     }
 
     /**
@@ -141,13 +100,12 @@ public abstract class BaseServiceImpl<M, E, ID extends Serializable> implements 
      * 如果将model转entity时，不忽略字段，super.beforeModify(model,entity);须放在首行
      *
      * @param model
-     * @param entity
      */
-    protected void beforeModify(M model, E entity) {
-        this.copyTo(model, entity);
+    protected void beforeModify(M model) {
+
     }
 
-    protected void afterModify(M model, E entity) {
+    protected void afterModify(M model) {
     }
 
     protected void beforeDelete(ID id) {
@@ -168,17 +126,4 @@ public abstract class BaseServiceImpl<M, E, ID extends Serializable> implements 
         BeanUtils.copyProperties(source, target, ignoreProperties);
     }
 
-    /**
-     * 获取当前登录用户
-     *
-     * @return
-     */
-    /*protected UserInfo getCurrentUser() {
-        Object principal = SecurityUtils.getSubject().getPrincipal();
-        if (principal == null) {
-            throw new AuthenticationException("未登录");
-        }
-        UserInfo user = (UserInfo) principal;
-        return user;
-    }*/
 }

@@ -12,7 +12,7 @@ import java.util.List;
  * @author chenye
  * @date 2019/1/8 21:23
  */
-public interface SysDepartService extends BaseService<SysDepartEntity, SysDepartQuery,String > {
+public interface SysDepartService {
 
     /**
      * 查询部门列表

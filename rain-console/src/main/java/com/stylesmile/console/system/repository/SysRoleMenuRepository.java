@@ -1,6 +1,6 @@
 package com.stylesmile.console.system.repository;
 
-import com.stylesmile.console.system.entity.SysDepartEntity;
+import com.stylesmile.console.system.entity.SysRoleMenuEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2019/01/20
  */
 @Repository
-public interface SysRoleMenuRepository extends BaseJpaRepository<SysDepartEntity, String> {
+public interface SysRoleMenuRepository extends BaseJpaRepository<SysRoleMenuEntity, String> {
     /**
      * 通过用户id 查询该用户拥有的菜单
      *

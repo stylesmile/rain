@@ -1,15 +1,8 @@
 package com.stylesmile.console.system.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.stylesmile.common.service.BaseServiceImpl;
 import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.repository.SysRoleRepository;
-import com.stylesmile.console.system.repository.SysUserRoleRepository;
-import com.stylesmile.console.system.service.common.BaseServiceImpl;
-import com.stylesmile.system.entity.SysRole;
-import com.stylesmile.system.mapper.SysRoleMapper;
-import com.stylesmile.system.query.SysRoleQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,10 @@
 package com.stylesmile.console.system.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.stylesmile.system.entity.SysUser;
-import com.stylesmile.system.query.SysUserQuery;
-import com.stylesmile.system.service.SysUserService;
+import com.stylesmile.console.system.entity.SysUserEntity;
+import com.stylesmile.console.system.query.SysUserQuery;
+import com.stylesmile.console.system.service.SysUserService;
 import com.stylesmile.util.Result;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,7 +42,7 @@ public class SysUserController {
      */
     @GetMapping(BASE_URL_PATH + "/list.json")
     public Result selectUserPage(SysUserQuery sysUserQuery) {
-        Page<SysUser> page = sysUserService.getUserList(sysUserQuery);
+        Page<SysUserEntity> page = sysUserService.getUserList(sysUserQuery);
         return Result.success(page);
     }
 
@@ -61,29 +61,17 @@ public class SysUserController {
      */
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
-    public Result add(SysUser user) {
-        return Result.bool(sysUserService.saveOrUpdate(user));
+    public Result add(SysUserEntity user) {
+        return Result.bool(false);
     }
 
-    /**
-     * 进入编辑用户页面
-     *
-     * @param id 主键
-     */
-    @GetMapping(BASE_URL_PATH + "/edit.html")
-    public ModelAndView edit(String id) {
-        ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/user_edit");
-        SysUser user = sysUserService.getById(id);
-        view.addObject("user", user);
-        return view;
-    }
 
     /**
      * 编辑用户
      */
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
-    public Result edit(SysUser user) {
+    public Result edit(SysUserEntity user) {
         Boolean b = sysUserService.updateUser(user);
         if (b) {
             return Result.success();

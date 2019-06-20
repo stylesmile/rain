@@ -20,7 +20,7 @@ import java.util.List;
  * @date 2019/1/8
  */
 @Service("sysDepartService")
-public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartEntity, SysDepartQuery, String> implements SysDepartService {
+public class SysDepartServiceImpl implements SysDepartService {
 
     @Autowired
     SysDepartRepository sysDepartRepository;

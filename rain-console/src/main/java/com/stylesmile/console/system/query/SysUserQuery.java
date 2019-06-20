@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @author chenye
- * @date 2018/12/10
+ * @date 2019/06/19
  */
 @Data
 public class SysUserQuery {

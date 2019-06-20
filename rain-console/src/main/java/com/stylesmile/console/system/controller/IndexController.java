@@ -4,6 +4,7 @@ package com.stylesmile.console.system.controller;
 import com.stylesmile.console.system.service.SysMenuService;
 import com.stylesmile.console.system.service.SysUserService;
 import com.stylesmile.console.system.tree.MenuTree;
+import com.stylesmile.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

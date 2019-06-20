@@ -1,18 +1,20 @@
 package com.stylesmile.console.system.repository;
 
-import com.stylesmile.console.system.entity.SysDepartEntity;
 import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author chenye
  * @date 2018/12/31
  */
 @Repository
-public interface SysRoleRepository extends BaseJpaRepository<SysDepartEntity, String> {
+public interface SysRoleRepository extends BaseJpaRepository<SysRoleEntity, String> {
     /**
      * 查询
      *
@@ -27,7 +29,7 @@ public interface SysRoleRepository extends BaseJpaRepository<SysDepartEntity, St
      * @param role 角色信息
      * @return Boolean
      */
-    Boolean updateRole(SysDepartEntity role);
+    Boolean updateRole(SysRoleEntity role);
 
     /**
      * 删除角色
@@ -45,5 +47,9 @@ public interface SysRoleRepository extends BaseJpaRepository<SysDepartEntity, St
      */
     Integer checkDuplicate(@Param("code") String code);
 
+    @Query("delete from sys_role_menu where id in (:ids)")
+    void deleteByIds(List<Integer> ids);
 
+    @Query("select menu_id from sys_role_menu where role_id =:roleId ")
+    List<Integer> getRoleMenuList(Integer roleId);
 }

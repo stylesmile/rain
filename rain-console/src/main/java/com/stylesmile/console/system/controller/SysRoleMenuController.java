@@ -1,6 +1,6 @@
 package com.stylesmile.console.system.controller;
 
-import com.stylesmile.system.service.SysRoleMenuService;
+import com.stylesmile.console.system.service.SysRoleMenuService;
 import com.stylesmile.util.ConvertUtil;
 import com.stylesmile.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +80,8 @@ public class SysRoleMenuController {
     @ResponseBody
     public Result deleteRoleMenu(String ids) {
         //批量删除
-        return Result.bool(sysRoleMenuService.removeByIds(ConvertUtil.strToLongList(ids)));
+        //return Result.bool(sysRoleMenuService.deleteByIds(ConvertUtil.strToLongList(ids)));
+        return null;
     }
 
 }

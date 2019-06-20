@@ -1,5 +1,6 @@
 package com.stylesmile.console.system.entity;
 
+import com.stylesmile.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysRoleMenuEntity {
+public class SysRoleMenuEntity extends BaseEntity {
 
     @Id
     @Column(length = 20)

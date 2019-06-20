@@ -13,21 +13,20 @@ import java.util.List;
  * @author chenye
  * @date 2019/06/19
  */
-public interface BaseService<M, F, ID extends Serializable> {
+public interface BaseService<M, Q, ID extends Serializable> {
 
-    public M create(M target);
+    public M save(M target);
 
     public Long delete(ID id);
+
+    public Long deleteByIds(List<ID> ids);
 
     public M modify(M target);
 
     public M detail(ID id);
 
-    public long count(F filter);
 
-    public boolean exists(ID id);
+    public List<M> list(Q query, Sort sort);
 
-    public List<M> list(F filter, Sort sort);
-
-    public Page<M> search(F filter, Pageable pageable);
+    public Page<M> search(Q query, Pageable pageable);
 }

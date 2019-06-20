@@ -48,10 +48,16 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
         sysUserRoleRepository.saveAll(sysUserRoleList);
         return true;
     }
-
+    /**
+     * 删除角色
+     *
+     * @param id 主键
+     * @return Boolean
+     */
     @Override
     public Boolean deleteRole(Integer id) {
-        return sysUserRoleRepository.deleteById(id) > 0 ? true : false;
+        sysUserRoleRepository.deleteById(id);
+        return true;
     }
 
     /**

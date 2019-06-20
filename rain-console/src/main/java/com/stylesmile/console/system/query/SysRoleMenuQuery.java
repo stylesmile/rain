@@ -7,11 +7,8 @@ import lombok.Data;
  * @date 2019/06/19
  */
 @Data
-public class SysMenuQuery {
+public class SysRoleMenuQuery {
 
     private int id;
-    private String name;
-    private String code;
-    private String sort;
 
 }

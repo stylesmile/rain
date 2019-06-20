@@ -1,5 +1,6 @@
 package com.stylesmile.console.system.entity;
 
+import com.stylesmile.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysDepartEntity {
+public class SysDepartEntity extends BaseEntity {
     /**
      * 主键
      */

@@ -1,7 +1,9 @@
 package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.system.entity.SysRoleMenuEntity;
+import com.stylesmile.console.system.query.SysRoleMenuQuery;
 import com.stylesmile.console.system.service.common.BaseService;
+import com.stylesmile.console.system.service.common.BaseServiceImpl;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  * @author chenye
  * @date 2019/1/8
  */
-public interface SysRoleMenuService  {
+public interface SysRoleMenuService  extends BaseServiceImpl<SysRoleMenuEntity, SysRoleMenuQuery, String> {
 
     /**
      * 角色增加菜单

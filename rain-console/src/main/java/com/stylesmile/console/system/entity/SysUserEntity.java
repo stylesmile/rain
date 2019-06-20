@@ -1,5 +1,6 @@
 package com.stylesmile.console.system.entity;
 
+import com.stylesmile.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysUserEntity  {
+public class SysUserEntity extends BaseEntity {
     /**
      * 主键
      */
@@ -58,10 +59,12 @@ public class SysUserEntity  {
      */
     @Column(length = 20)
     private Integer delFlag;
+
     public SysUserEntity(String username, String password) {
         this.username = username;
         this.password = password;
     }
+
     public SysUserEntity(String username) {
         this.username = username;
     }
