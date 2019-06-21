@@ -34,6 +34,16 @@ public abstract class BaseServiceImpl<M, Q, ID extends Serializable> implements 
         logger.debug("create object: {}", model.toString());
         return repository.save(model);
     }
+    @Transactional
+    @Override
+    public boolean saveEntity(M model) {
+        return null==save(model) ? false: true;
+    }
+
+    @Override
+    public M getById(Serializable serializable) {
+        return repository.getOne((ID)serializable);
+    }
 
     @Transactional
     @Override

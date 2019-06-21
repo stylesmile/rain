@@ -1,8 +1,12 @@
 package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.system.entity.SysMenuEntity;
+import com.stylesmile.console.system.entity.SysRoleMenuEntity;
 import com.stylesmile.console.system.entity.SysUserEntity;
+import com.stylesmile.console.system.query.SysMenuQuery;
+import com.stylesmile.console.system.query.SysRoleMenuQuery;
 import com.stylesmile.console.system.repository.SysMenuRepository;
+import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.console.system.tree.MenuTree;
 import com.stylesmile.constant.UserConstant;
 import org.springframework.stereotype.Service;
@@ -18,7 +22,7 @@ import java.util.List;
  * @date 2019/1/8
  */
 @Service("sysMenuService")
-public class SysMenuServiceImpl implements SysMenuService {
+public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuEntity, SysMenuQuery, String> implements SysMenuService {
 
     @Resource
     SysMenuRepository sysMenuRepository;

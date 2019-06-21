@@ -3,6 +3,7 @@ package com.stylesmile.console.system.service;
 import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.entity.SysUserRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
+import com.stylesmile.console.system.query.SysUserRoleQuery;
 import com.stylesmile.console.system.service.common.BaseService;
 import org.springframework.data.domain.Page;
 
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author chenye
  * @date 2019/1/8
  */
-public interface SysUserRoleService {
+public interface SysUserRoleService extends BaseService<SysUserRoleEntity, SysUserRoleQuery, String> {
 
     /**
      * 用户增加角色

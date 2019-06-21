@@ -1,7 +1,7 @@
 package com.stylesmile.console.system.controller;
 
-import com.stylesmile.system.entity.SysDepart;
-import com.stylesmile.system.service.SysDepartService;
+import com.stylesmile.console.system.entity.SysDepartEntity;
+import com.stylesmile.console.system.service.SysDepartService;
 import com.stylesmile.util.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +41,7 @@ public class SysDepartController {
      */
     @GetMapping(BASE_URL_PATH + "/list.json")
     @ResponseBody
-    public Result<List<SysDepart>> list() {
+    public Result<List<SysDepartEntity>> list() {
         return Result.success(sysDepartService.getList());
     }
 
@@ -63,8 +63,8 @@ public class SysDepartController {
      */
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
-    public Result add(SysDepart depart) {
-        return Result.bool(sysDepartService.save(depart));
+    public Result add(SysDepartEntity depart) {
+        return Result.bool(sysDepartService.saveEntity(depart));
     }
 
     /**
@@ -75,7 +75,7 @@ public class SysDepartController {
     @GetMapping(BASE_URL_PATH + "/edit.html")
     public ModelAndView edit(Long id) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/depart_edit");
-        SysDepart depart = sysDepartService.getById(id);
+        SysDepartEntity depart = sysDepartService.getById(id);
         view.addObject("depart", depart);
         return view;
     }
@@ -87,8 +87,8 @@ public class SysDepartController {
      */
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
-    public Result edit(SysDepart sysDepart) {
-        return Result.bool(sysDepartService.updateById(sysDepart));
+    public Result edit(SysDepartEntity sysDepart) {
+        return Result.bool(sysDepartService.saveEntity(sysDepart));
     }
 
     /**

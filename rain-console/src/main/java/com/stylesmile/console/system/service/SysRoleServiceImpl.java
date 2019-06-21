@@ -1,8 +1,11 @@
 package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.system.entity.SysRoleEntity;
+import com.stylesmile.console.system.entity.SysRoleMenuEntity;
+import com.stylesmile.console.system.query.SysRoleMenuQuery;
 import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.repository.SysRoleRepository;
+import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +18,7 @@ import javax.annotation.Resource;
  * @date 2019/1/8
  */
 @Service("sysRoleService")
-public class SysRoleServiceImpl implements SysRoleService {
+public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleEntity, SysRoleQuery, String> implements SysRoleService {
     @Resource
     SysRoleRepository sysRoleRepository;
 

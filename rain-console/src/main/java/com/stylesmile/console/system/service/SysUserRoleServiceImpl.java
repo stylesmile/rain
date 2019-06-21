@@ -3,7 +3,9 @@ package com.stylesmile.console.system.service;
 import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.entity.SysUserRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
+import com.stylesmile.console.system.query.SysUserRoleQuery;
 import com.stylesmile.console.system.repository.SysUserRoleRepository;
+import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.util.ConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +23,7 @@ import java.util.List;
  */
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @Service("sysUserRoleService")
-public class SysUserRoleServiceImpl implements SysUserRoleService {
+public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleEntity, SysUserRoleQuery, String> implements SysUserRoleService {
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     SysUserRoleRepository sysUserRoleRepository;

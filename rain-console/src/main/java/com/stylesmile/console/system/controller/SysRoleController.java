@@ -1,11 +1,11 @@
 package com.stylesmile.console.system.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.stylesmile.system.entity.SysRole;
-import com.stylesmile.system.query.SysRoleQuery;
-import com.stylesmile.system.service.SysRoleService;
+import com.stylesmile.console.system.entity.SysRoleEntity;
+import com.stylesmile.console.system.query.SysRoleQuery;
+import com.stylesmile.console.system.service.SysRoleService;
 import com.stylesmile.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +44,7 @@ public class SysRoleController {
      */
     @GetMapping(BASE_URL_PATH + "/list.json")
     public Result selectRolePage(SysRoleQuery sysRoleQuery) {
-        Page<SysRole> ipage = sysRoleService.getRoleList(sysRoleQuery);
+        Page<SysRoleEntity> ipage = sysRoleService.getRoleList(sysRoleQuery);
         return Result.success(ipage);
     }
 
@@ -65,13 +65,13 @@ public class SysRoleController {
      */
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
-    public Result add(SysRole role) {
+    public Result add(SysRoleEntity role) {
         //判断编号code是否重复
         Integer count = sysRoleService.checkDuplicate(role.getCode());
         if (count > 0) {
             return Result.fail("编号重复!");
         }
-        return Result.bool(sysRoleService.save(role));
+        return Result.bool(sysRoleService.saveEntity(role));
     }
 
     /**
@@ -82,7 +82,7 @@ public class SysRoleController {
     @GetMapping(BASE_URL_PATH + "/edit.html")
     public ModelAndView edit(String id) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/role_edit");
-        SysRole role = sysRoleService.getById(id);
+        SysRoleEntity role = sysRoleService.getById(id);
         view.addObject("role", role);
         return view;
     }
@@ -95,7 +95,7 @@ public class SysRoleController {
      */
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
-    public Result edit(SysRole role) {
+    public Result edit(SysRoleEntity role) {
         return Result.bool(sysRoleService.updateRole(role));
     }
 

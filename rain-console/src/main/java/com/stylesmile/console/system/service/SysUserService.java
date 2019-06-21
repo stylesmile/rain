@@ -1,8 +1,8 @@
 package com.stylesmile.console.system.service;
 
-import com.stylesmile.console.system.entity.SysMenuEntity;
 import com.stylesmile.console.system.entity.SysUserEntity;
 import com.stylesmile.console.system.query.SysUserQuery;
+import com.stylesmile.console.system.service.common.BaseService;
 import com.stylesmile.util.Result;
 import org.springframework.data.domain.Page;
 
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * @author chenye
  * @date 2019/1/8
  */
-public interface SysUserService {
+public interface SysUserService extends BaseService<SysUserEntity, SysUserQuery, String> {
 
     SysUserEntity getSessionUser(HttpServletRequest httpServletRequest);
 

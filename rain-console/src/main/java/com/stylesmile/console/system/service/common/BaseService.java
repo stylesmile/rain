@@ -15,7 +15,11 @@ import java.util.List;
  */
 public interface BaseService<M, Q, ID extends Serializable> {
 
+    public M getById(Serializable serializable);
+
     public M save(M target);
+
+    public boolean saveEntity(M target);
 
     public Long delete(ID id);
 

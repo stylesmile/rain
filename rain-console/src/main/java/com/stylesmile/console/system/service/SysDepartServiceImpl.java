@@ -8,7 +8,6 @@ import com.stylesmile.constant.CacheConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
  * @date 2019/1/8
  */
 @Service("sysDepartService")
-public class SysDepartServiceImpl implements SysDepartService {
+public class SysDepartServiceImpl extends BaseServiceImpl<SysDepartEntity, SysDepartQuery, String> implements SysDepartService {
 
     @Autowired
     SysDepartRepository sysDepartRepository;

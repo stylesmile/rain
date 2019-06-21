@@ -1,7 +1,7 @@
 package com.stylesmile.console.system.controller;
 
-import com.stylesmile.system.entity.SysMenu;
-import com.stylesmile.system.service.SysMenuService;
+import com.stylesmile.console.system.entity.SysMenuEntity;
+import com.stylesmile.console.system.service.SysMenuService;
 import com.stylesmile.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +41,7 @@ public class SysMenuController {
      */
     @GetMapping(BASE_URL_PATH + "/list.json")
     @ResponseBody
-    public Result<List<SysMenu>> list() {
+    public Result<List<SysMenuEntity>> list() {
         return Result.success(sysMenuService.getList());
     }
 
@@ -63,8 +63,8 @@ public class SysMenuController {
      */
     @PostMapping(BASE_URL_PATH + "/add.json")
     @ResponseBody
-    public Result add(SysMenu menu) {
-        return Result.bool(sysMenuService.save(menu));
+    public Result add(SysMenuEntity menu) {
+        return Result.bool(sysMenuService.saveEntity(menu));
     }
 
     /**
@@ -75,7 +75,7 @@ public class SysMenuController {
     @GetMapping(BASE_URL_PATH + "/edit.html")
     public ModelAndView edit(Long id) {
         ModelAndView view = new ModelAndView(BASE_HTML_PATH + "/menu_edit");
-        SysMenu menu = sysMenuService.getById(id);
+        SysMenuEntity menu = sysMenuService.getById(id);
         view.addObject("menu", menu);
         return view;
     }
@@ -87,8 +87,8 @@ public class SysMenuController {
      */
     @PostMapping(BASE_URL_PATH + "/edit.json")
     @ResponseBody
-    public Result edit(SysMenu sysMenu) {
-        return Result.bool(sysMenuService.updateById(sysMenu));
+    public Result edit(SysMenuEntity sysMenu) {
+        return Result.bool(sysMenuService.saveEntity(sysMenu));
     }
 
     /**

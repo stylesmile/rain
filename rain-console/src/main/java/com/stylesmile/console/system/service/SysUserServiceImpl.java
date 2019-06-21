@@ -1,8 +1,11 @@
 package com.stylesmile.console.system.service;
 
+import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.entity.SysUserEntity;
+import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.query.SysUserQuery;
 import com.stylesmile.console.system.repository.SysUserRepository;
+import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.constant.SessionConstant;
 import com.stylesmile.constant.UserConstant;
 import com.stylesmile.util.Result;
@@ -20,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @date 2019/1/8
  */
 @Service("sysUserService")
-public class SysUserServiceImpl  implements SysUserService {
+public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserQuery, String> implements SysUserService {
     @Resource
     SysUserRepository sysUserRepository;
     /**
