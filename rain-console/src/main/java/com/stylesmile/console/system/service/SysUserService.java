@@ -5,6 +5,7 @@ import com.stylesmile.console.system.query.SysUserQuery;
 import com.stylesmile.console.system.service.common.BaseService;
 import com.stylesmile.util.Result;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,7 +25,6 @@ public interface SysUserService extends BaseService<SysUserEntity, SysUserQuery,
      *
      * @param username 用户名
      * @param password 密码
-     * @param session  session
      * @return Result
      */
     Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session);
@@ -35,7 +35,7 @@ public interface SysUserService extends BaseService<SysUserEntity, SysUserQuery,
      * @param sysUserQuery 条件
      * @return Page
      */
-    Page<SysUserEntity> getUserList(SysUserQuery sysUserQuery);
+    Page<SysUserEntity> getUserList(SysUserQuery sysUserQuery, Pageable pageable);
 
     /**
      * 修改用户

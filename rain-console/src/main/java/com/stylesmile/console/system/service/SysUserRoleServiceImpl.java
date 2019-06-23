@@ -9,6 +9,7 @@ import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.util.ConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -69,7 +70,7 @@ public class SysUserRoleServiceImpl extends BaseServiceImpl<SysUserRoleEntity, S
      * @return Page<SysRole>
      */
     @Override
-    public Page<SysRoleEntity> getUserRoleList(SysRoleQuery sysRoleQuery) {
-        return sysUserRoleRepository.getUserRoleList(sysRoleQuery);
+    public Page<SysRoleEntity> getUserRoleList(SysRoleQuery sysRoleQuery, Pageable pageable) {
+        return sysUserRoleRepository.getUserRoleList(sysRoleQuery.getUserId(), pageable);
     }
 }

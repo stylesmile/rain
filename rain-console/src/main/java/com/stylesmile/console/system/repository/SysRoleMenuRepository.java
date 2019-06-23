@@ -1,6 +1,7 @@
 package com.stylesmile.console.system.repository;
 
 import com.stylesmile.console.system.entity.SysRoleMenuEntity;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface SysRoleMenuRepository extends BaseJpaRepository<SysRoleMenuEnti
      * @param roleId 角色id
      * @return List<SysRoleMenu>
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
+
     List<Integer> getRoleMenuList(Integer roleId);
 }

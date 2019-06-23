@@ -9,6 +9,7 @@ import com.stylesmile.util.ConvertUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class SysRoleMenuServiceImpl extends BaseServiceImpl<SysRoleMenuEntity, S
         List<Integer> delIds = new ArrayList<>();
         //待新增的list
         List<SysRoleMenuEntity> sysRoleMenuList = new ArrayList<>();
-        //数据库中该角色的menuId 集合
+        //数据库中该角色的menuId 集合,
         List<Integer> dbs = getRoleMenuList(roleId);
 
         //待删除

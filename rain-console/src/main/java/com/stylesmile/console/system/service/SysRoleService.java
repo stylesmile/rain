@@ -4,11 +4,13 @@ import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.service.common.BaseService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 /**
  * @Description: 角色管理
  * @Author: StyleSmile
- * @Date: 2019/1/8
+ * @Date: 2019/06/22
  */
 public interface SysRoleService extends BaseService<SysRoleEntity, SysRoleQuery, String> {
 
@@ -18,7 +20,7 @@ public interface SysRoleService extends BaseService<SysRoleEntity, SysRoleQuery,
      * @param sysRoleQuery 条件
      * @return Page
      */
-    Page<SysRoleEntity> getRoleList(SysRoleQuery sysRoleQuery);
+    Page<SysRoleEntity> getRoleList(SysRoleQuery sysRoleQuery, Pageable pageable);
 
     /**
      * 修改角色

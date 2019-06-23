@@ -6,6 +6,7 @@ import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.query.SysUserRoleQuery;
 import com.stylesmile.console.system.service.common.BaseService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,5 +41,5 @@ public interface SysUserRoleService extends BaseService<SysUserRoleEntity, SysUs
      * @param sysRoleQuery 用户id
      * @return Page<SysRole>
      */
-    Page<SysRoleEntity> getUserRoleList(SysRoleQuery sysRoleQuery);
+    Page<SysRoleEntity> getUserRoleList(SysRoleQuery sysRoleQuery, Pageable pageable);
 }

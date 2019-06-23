@@ -9,12 +9,15 @@ import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.constant.SessionConstant;
 import com.stylesmile.constant.UserConstant;
 import com.stylesmile.util.Result;
+import com.stylesmile.util.UUIDUtil;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
  * 用户管理
@@ -47,15 +50,15 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserQu
      */
     @Override
     public Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session) {
-        SysUserEntity user = sysUserRepository.getSysUserByNameAndPassword(username);
+        SysUserEntity user = sysUserRepository.getSysUserByName(username);
         if (null != user && password.equals(user.getPassword())) {
             session.setAttribute(SessionConstant.LOGIN_USER, user);
-            return Result.successMessage("登陆成功");
+            return Result.successMessage(UUIDUtil.getUUID());
         } else {
             //数据库查不到超级管理员 用户，超级管理员用户就读取系统中写死的用户名，密码
             if (null == user && UserConstant.SUPPER_ADMIN.equals(username) && UserConstant.SUPPER_ADMIN_PASSWORD.equals(password)) {
                 session.setAttribute(SessionConstant.LOGIN_USER, new SysUserEntity(username));
-                return Result.successMessage("登陆成功");
+                return Result.successMessage(UUIDUtil.getUUID());
             }
             return Result.failMessage("用户名或者密码错误");
         }
@@ -68,8 +71,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserQu
      * @return Page
      */
     @Override
-    public Page<SysUserEntity> getUserList(SysUserQuery sysUserQuery) {
-        return sysUserRepository.getUserList(sysUserQuery);
+    public Page<SysUserEntity> getUserList(SysUserQuery sysUserQuery, Pageable pageable) {
+        return sysUserRepository.getUserList(sysUserQuery, pageable);
     }
 
     /**

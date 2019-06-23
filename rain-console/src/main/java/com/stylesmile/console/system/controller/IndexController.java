@@ -5,11 +5,14 @@ import com.stylesmile.console.system.service.SysMenuService;
 import com.stylesmile.console.system.service.SysUserService;
 import com.stylesmile.console.system.tree.MenuTree;
 import com.stylesmile.util.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -23,7 +26,9 @@ import javax.servlet.http.HttpSession;
  * @date 2018/11/18
  */
 @Slf4j
-@Controller
+@RestController
+@RequestMapping("/")
+@Api(value = "测试接口Controller")
 public class IndexController {
 
     @Resource
@@ -31,14 +36,6 @@ public class IndexController {
     @Resource
     SysMenuService sysMenuService;
 
-
-    /**
-     * 登陆页面
-     */
-    @GetMapping(value = {"/", "/login.html"})
-    public String login() {
-        return "/login";
-    }
 
     /**
      * 登陆方法
@@ -49,8 +46,12 @@ public class IndexController {
      * <p>
      * LogLoginAnnotation 为登陆日志aop
      */
-    @PostMapping("/login.json")
-    @ResponseBody
+    @ApiOperation(value = "测试用接口", notes = "测试用接口", httpMethod = "POST")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户登录名", dataType = "String", required = true, paramType = "form"),
+            @ApiImplicitParam(name = "password", value = "密码", dataType = "String", required = true, paramType = "form")
+    })
+    @RequestMapping("/login.json")
     public Result<String> login(String username, String password, HttpSession session) {
         return sysUserService.getSysUserByNameAndPassword(username, password, session);
     }

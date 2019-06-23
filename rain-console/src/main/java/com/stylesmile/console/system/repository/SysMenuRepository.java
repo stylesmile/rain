@@ -2,6 +2,7 @@ package com.stylesmile.console.system.repository;
 
 import com.stylesmile.console.system.entity.SysDepartEntity;
 import com.stylesmile.console.system.entity.SysMenuEntity;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ public interface SysMenuRepository extends BaseJpaRepository<SysMenuEntity, Stri
      *
      * @return list
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
     List<SysDepartEntity> getMenuList();
 
     /**
@@ -26,6 +28,7 @@ public interface SysMenuRepository extends BaseJpaRepository<SysMenuEntity, Stri
      * @param userId 用户id
      * @return List<SysMenu>
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
     List<SysMenuEntity> getMenuListByUserId(@Param("userId") Integer userId);
 
     /**
@@ -34,6 +37,7 @@ public interface SysMenuRepository extends BaseJpaRepository<SysMenuEntity, Stri
      * @param sysMenu 菜单
      * @return Boolean
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
     Boolean updateMenu(SysDepartEntity sysMenu);
 
     /**
@@ -42,6 +46,7 @@ public interface SysMenuRepository extends BaseJpaRepository<SysMenuEntity, Stri
      * @param id 主键
      * @return Boolean
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
     Boolean deleteMenu(@Param("id") String id);
 
 }

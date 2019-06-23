@@ -4,6 +4,7 @@ import com.stylesmile.console.system.entity.SysRoleMenuEntity;
 import com.stylesmile.console.system.query.SysRoleMenuQuery;
 import com.stylesmile.console.system.service.common.BaseService;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public interface SysRoleMenuService extends BaseService<SysRoleMenuEntity, SysRo
      * 通过角色id 查询该用户拥有的菜单
      *
      * @param roleId 角色id
-     * @return List<SysRoleMenu>
+     * @return List<Integer>
      */
     List<Integer> getRoleMenuList(Integer roleId);
 }

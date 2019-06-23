@@ -1,6 +1,7 @@
 package com.stylesmile.console.system.repository;
 
 import com.stylesmile.console.system.entity.SysDepartEntity;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface SysDepartRepository extends BaseJpaRepository<SysDepartEntity, 
      *
      * @return list
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
     List<SysDepartEntity> getDepartList();
 
     /**
@@ -24,6 +26,7 @@ public interface SysDepartRepository extends BaseJpaRepository<SysDepartEntity, 
      * @param sysDepart 部门
      * @return Boolean
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
     Boolean updateDepart(SysDepartEntity sysDepart);
 
     /**
@@ -32,5 +35,6 @@ public interface SysDepartRepository extends BaseJpaRepository<SysDepartEntity, 
      * @param id 主键
      * @return Boolean
      */
+    @Query(value = "select * from SysUserEntity ", nativeQuery = true)
     Boolean deleteDepart(String id);
 }

@@ -1,12 +1,11 @@
 package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.system.entity.SysRoleEntity;
-import com.stylesmile.console.system.entity.SysRoleMenuEntity;
-import com.stylesmile.console.system.query.SysRoleMenuQuery;
 import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.repository.SysRoleRepository;
 import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,8 +22,8 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleEntity, SysRoleQu
     SysRoleRepository sysRoleRepository;
 
     @Override
-    public Page<SysRoleEntity> getRoleList(SysRoleQuery sysRoleQuery) {
-        return sysRoleRepository.getRoleList(sysRoleQuery);
+    public Page<SysRoleEntity> getRoleList(SysRoleQuery sysRoleQuery, Pageable pageable) {
+        return sysRoleRepository.getRoleList(sysRoleQuery, pageable);
     }
 
     @Override
