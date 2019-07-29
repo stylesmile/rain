@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  */
 @Slf4j
 @RestController
-@RequestMapping("/")
+@RequestMapping("/index")
 @Api(value = "测试接口Controller")
 public class IndexController {
 
@@ -63,24 +63,19 @@ public class IndexController {
      * @param httpSession session
      */
     @GetMapping("/logOut.do")
-    public ModelAndView logOut(HttpSession httpSession) {
+    public Result logOut(HttpSession httpSession) {
         //注销session
         httpSession.invalidate();
         //跳转登陆页面
-        return new ModelAndView("/login");
+        return Result.success();
     }
 
     /**
      * 后台管理系统首页
      */
-    @GetMapping("/index.html")
-    public ModelAndView index(HttpServletRequest httpServletRequest) {
-        ModelAndView view = new ModelAndView("/index");
-
-        //通过用户id获取当前用户的菜单
-        MenuTree menuTree = sysMenuService.getMenuListByUserId(httpServletRequest);
-        view.addObject("menuList", menuTree.getChildren());
-        return view;
+    @GetMapping("/index.json")
+    public Result index(HttpServletRequest httpServletRequest) {
+        return Result.success(sysMenuService.getMenuListByUserId(httpServletRequest));
     }
 
 }
