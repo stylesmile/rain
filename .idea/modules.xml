@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/rain.iml" filepath="$PROJECT_DIR$/.idea/rain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rain.iml" filepath="$PROJECT_DIR$/rain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rain-common/rain-common.iml" filepath="$PROJECT_DIR$/rain-common/rain-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rain-console/rain-console.iml" filepath="$PROJECT_DIR$/rain-console/rain-console.iml" />
     </modules>
   </component>
 </project>
