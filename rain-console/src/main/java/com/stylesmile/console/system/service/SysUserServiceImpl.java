@@ -1,13 +1,11 @@
 package com.stylesmile.console.system.service;
 
-import com.stylesmile.console.system.entity.SysRoleEntity;
 import com.stylesmile.console.system.entity.SysUserEntity;
-import com.stylesmile.console.system.query.SysRoleQuery;
 import com.stylesmile.console.system.query.SysUserQuery;
 import com.stylesmile.console.system.repository.SysUserRepository;
 import com.stylesmile.console.system.service.common.BaseServiceImpl;
-import com.stylesmile.constant.SessionConstant;
-import com.stylesmile.constant.UserConstant;
+import com.stylesmile.console.common.constant.SessionConstant;
+import com.stylesmile.console.common.constant.UserConstant;
 import com.stylesmile.util.Result;
 import com.stylesmile.util.UUIDUtil;
 import org.springframework.data.domain.Page;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.UUID;
 
 /**
  * 用户管理

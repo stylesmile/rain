@@ -4,7 +4,7 @@ import com.stylesmile.console.system.entity.SysDepartEntity;
 import com.stylesmile.console.system.query.SysDepartQuery;
 import com.stylesmile.console.system.repository.SysDepartRepository;
 import com.stylesmile.console.system.service.common.BaseServiceImpl;
-import com.stylesmile.constant.CacheConstant;
+import com.stylesmile.console.common.constant.CacheConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;

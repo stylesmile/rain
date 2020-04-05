@@ -1,14 +1,12 @@
 package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.system.entity.SysMenuEntity;
-import com.stylesmile.console.system.entity.SysRoleMenuEntity;
 import com.stylesmile.console.system.entity.SysUserEntity;
 import com.stylesmile.console.system.query.SysMenuQuery;
-import com.stylesmile.console.system.query.SysRoleMenuQuery;
 import com.stylesmile.console.system.repository.SysMenuRepository;
 import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.console.system.tree.MenuTree;
-import com.stylesmile.constant.UserConstant;
+import com.stylesmile.console.common.constant.UserConstant;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
