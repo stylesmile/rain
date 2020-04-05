@@ -5,9 +5,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.2.6.RELEASE</version>
+        <relativePath/>
     </parent>
+
+
     <groupId>com.stylesmile</groupId>
     <artifactId>rain</artifactId>
     <version>${rain.version}</version>
@@ -24,9 +26,9 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <rain.version>1.1.0</rain.version>
-        <rain.common.version>1.1.0</rain.common.version>
-        <rain.console.version>1.1.0</rain.console.version>
+        <rain.version>0.0.1</rain.version>
+        <rain.common.version>0.0.1</rain.common.version>
+        <rain.console.version>0.0.1</rain.console.version>
         <!-- 打包时忽略测试 -->
         <skipTests>true</skipTests>
     </properties>
@@ -58,30 +60,34 @@
                     <!-- 热部署 -->
                     <fork>true</fork>
                 </configuration>
-                <!--<executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>-->
             </plugin>
         </plugins>
     </build>
+
+
     <!-- maven 仓库 -->
     <repositories>
         <repository>
             <id>aliyun-nexus</id>
             <name>aliyun-nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-            <snapshots>
+            <snapshots><!--快照-->
                 <enabled>false</enabled>
             </snapshots>
-            <releases>
+            <releases><!--正式版-->
                 <enabled>true</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
+
     <!--插件仓库-->
     <pluginRepositories>
         <pluginRepository>
@@ -95,5 +101,17 @@
                 <enabled>true</enabled>
             </releases>
         </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
     </pluginRepositories>
+
 </project>
