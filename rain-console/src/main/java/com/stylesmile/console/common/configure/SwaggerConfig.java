@@ -1,4 +1,4 @@
-package com.stylesmile.console.configure;
+package com.stylesmile.console.common.configure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
