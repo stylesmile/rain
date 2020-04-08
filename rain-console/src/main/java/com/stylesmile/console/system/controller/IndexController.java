@@ -1,9 +1,9 @@
 package com.stylesmile.console.system.controller;
 
 
+import com.stylesmile.console.system.domain.LoginUserRequest;
 import com.stylesmile.console.system.service.SysMenuService;
 import com.stylesmile.console.system.service.SysUserService;
-import com.stylesmile.console.system.tree.MenuTree;
 import com.stylesmile.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -11,9 +11,9 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -49,11 +49,30 @@ public class IndexController {
     @ApiOperation(value = "测试用接口", notes = "测试用接口", httpMethod = "POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "username", value = "用户登录名", example = "admin", dataType = "String", required = true),
-            @ApiImplicitParam(name = "password", value = "密码", example = "admin", dataType = "String", required = true)
+            @ApiImplicitParam(name = "password", value = "密码", example = "111111", dataType = "String", required = true)
     })
     @RequestMapping("/login")
     public Result<String> login(String username, String password) {
         return sysUserService.getSysUserByNameAndPassword(username, password);
+    }
+
+    /**
+     * 登陆方法
+     *
+     * @return Result
+     * <p>
+     * LogLoginAnnotation 为登陆日志aop
+     */
+//    @ApiOperation(value = "测试用接口", notes = "测试用接口", httpMethod = "POST")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "username", value = "用户登录名", example = "admin", dataType = "String", required = true, paramType = "form"),
+//            @ApiImplicitParam(name = "password", value = "密码", example = "111111", dataType = "String", required = true)
+//    })
+    @RequestMapping("/login1")
+
+    public Result<String> login(@RequestBody LoginUserRequest loginUserRequest) {
+        return null;
+        //return sysUserService.getSysUserByNameAndPassword(username, password);
     }
 
     /**
