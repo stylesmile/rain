@@ -28,6 +28,8 @@ public class SwaggerConfig {
 
 	private Predicate<String> postPaths() {
 		return or(
+				regex("/login"),
+				regex("/logOut"),
 				regex("/user/.*"),
 				regex("/index/.*"));
 	}

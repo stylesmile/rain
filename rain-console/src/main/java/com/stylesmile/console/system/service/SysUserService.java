@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * 用户管理
@@ -27,7 +26,7 @@ public interface SysUserService extends BaseService<SysUserEntity, SysUserQuery,
      * @param password 密码
      * @return Result
      */
-    Result<String> getSysUserByNameAndPassword(String username, String password, HttpSession session);
+    Result<String> getSysUserByNameAndPassword(String username, String password);
 
     /**
      * 查询用户

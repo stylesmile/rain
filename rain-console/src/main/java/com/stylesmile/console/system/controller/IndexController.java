@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  */
 @Slf4j
 @RestController
-@RequestMapping("/index")
+//@RequestMapping("/index")
 @Api(value = "测试接口Controller")
 public class IndexController {
 
@@ -48,12 +48,12 @@ public class IndexController {
      */
     @ApiOperation(value = "测试用接口", notes = "测试用接口", httpMethod = "POST")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户登录名", dataType = "String", required = true, paramType = "form"),
-            @ApiImplicitParam(name = "password", value = "密码", dataType = "String", required = true, paramType = "form")
+            @ApiImplicitParam(name = "username", value = "用户登录名", example = "admin", dataType = "String", required = true),
+            @ApiImplicitParam(name = "password", value = "密码", example = "admin", dataType = "String", required = true)
     })
-    @RequestMapping("/login.json")
-    public Result<String> login(String username, String password, HttpSession session) {
-        return sysUserService.getSysUserByNameAndPassword(username, password, session);
+    @RequestMapping("/login")
+    public Result<String> login(String username, String password) {
+        return sysUserService.getSysUserByNameAndPassword(username, password);
     }
 
     /**
@@ -62,7 +62,7 @@ public class IndexController {
      *
      * @param httpSession session
      */
-    @GetMapping("/logOut.do")
+    @GetMapping("/logOut")
     public Result logOut(HttpSession httpSession) {
         //注销session
         httpSession.invalidate();
@@ -73,7 +73,7 @@ public class IndexController {
     /**
      * 后台管理系统首页
      */
-    @GetMapping("/index.json")
+    @GetMapping("/index")
     public Result index(HttpServletRequest httpServletRequest) {
         return Result.success(sysMenuService.getMenuListByUserId(httpServletRequest));
     }
