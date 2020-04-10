@@ -2,6 +2,7 @@ package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.common.constant.SessionConstant;
 import com.stylesmile.console.common.constant.UserConstant;
+import com.stylesmile.console.system.domain.LoginResult;
 import com.stylesmile.console.system.entity.SysUserEntity;
 import com.stylesmile.console.system.query.SysUserQuery;
 import com.stylesmile.console.system.repository.SysUserRepository;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 用户管理
@@ -47,9 +50,11 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserQu
      * @return Result
      */
     @Override
-    public Result<String> getSysUserByNameAndPassword(String username, String password) {
+    public Result<LoginResult> getSysUserByNameAndPassword(String username, String password) {
         if (username.equals("admin")) {
-            return Result.success();
+            LoginResult loginResult = new LoginResult();
+            loginResult.setToken(UUIDUtil.getUUID());
+            return Result.success(loginResult);
         }
         SysUserEntity user = sysUserRepository.getSysUserByName(username);
         if (null != user && password.equals(user.getPassword())) {

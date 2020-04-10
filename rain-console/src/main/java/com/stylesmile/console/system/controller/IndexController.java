@@ -1,6 +1,7 @@
 package com.stylesmile.console.system.controller;
 
 
+import com.stylesmile.console.system.domain.LoginResult;
 import com.stylesmile.console.system.domain.LoginUserRequest;
 import com.stylesmile.console.system.service.SysMenuService;
 import com.stylesmile.console.system.service.SysUserService;
@@ -52,27 +53,8 @@ public class IndexController {
             @ApiImplicitParam(name = "password", value = "密码", example = "111111", dataType = "String", required = true)
     })
     @RequestMapping("/login")
-    public Result<String> login(String username, String password) {
+    public Result<LoginResult> login(String username, String password) {
         return sysUserService.getSysUserByNameAndPassword(username, password);
-    }
-
-    /**
-     * 登陆方法
-     *
-     * @return Result
-     * <p>
-     * LogLoginAnnotation 为登陆日志aop
-     */
-//    @ApiOperation(value = "测试用接口", notes = "测试用接口", httpMethod = "POST")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "username", value = "用户登录名", example = "admin", dataType = "String", required = true, paramType = "form"),
-//            @ApiImplicitParam(name = "password", value = "密码", example = "111111", dataType = "String", required = true)
-//    })
-    @RequestMapping("/login1")
-
-    public Result<String> login(@RequestBody LoginUserRequest loginUserRequest) {
-        return null;
-        //return sysUserService.getSysUserByNameAndPassword(username, password);
     }
 
     /**
