@@ -2,13 +2,15 @@ package com.stylesmile.console.system.service;
 
 import com.stylesmile.console.common.constant.SessionConstant;
 import com.stylesmile.console.common.constant.UserConstant;
-import com.stylesmile.console.system.domain.LoginResult;
+import com.stylesmile.console.system.domain.LoginUserResult;
+import com.stylesmile.console.system.domain.user.UserInfo;
 import com.stylesmile.console.system.entity.SysUserEntity;
 import com.stylesmile.console.system.query.SysUserQuery;
 import com.stylesmile.console.system.repository.SysUserRepository;
 import com.stylesmile.console.system.service.common.BaseServiceImpl;
 import com.stylesmile.util.Result;
 import com.stylesmile.util.UUIDUtil;
+import org.apache.catalina.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 用户管理
@@ -50,10 +52,21 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity, SysUserQu
      * @return Result
      */
     @Override
-    public Result<LoginResult> getSysUserByNameAndPassword(String username, String password) {
+    public Result<LoginUserResult> getSysUserByNameAndPassword(String username, String password) {
         if (username.equals("admin")) {
-            LoginResult loginResult = new LoginResult();
+            UserInfo userInfo = UserInfo.builder()
+                    .id(1)
+                    .nickname("管理员")
+                    .username("admin")
+                    .build();
+            Set<String> roles = new HashSet<>();
+            roles.add("admin");
+
+            LoginUserResult loginResult = new LoginUserResult();
             loginResult.setToken(UUIDUtil.getUUID());
+            loginResult.setUser(userInfo);
+            loginResult.setRoles(roles);
+
             return Result.success(loginResult);
         }
         SysUserEntity user = sysUserRepository.getSysUserByName(username);

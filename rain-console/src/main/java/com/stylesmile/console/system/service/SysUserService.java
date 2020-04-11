@@ -1,6 +1,6 @@
 package com.stylesmile.console.system.service;
 
-import com.stylesmile.console.system.domain.LoginResult;
+import com.stylesmile.console.system.domain.LoginUserResult;
 import com.stylesmile.console.system.entity.SysUserEntity;
 import com.stylesmile.console.system.query.SysUserQuery;
 import com.stylesmile.console.system.service.common.BaseService;
@@ -27,7 +27,7 @@ public interface SysUserService extends BaseService<SysUserEntity, SysUserQuery,
      * @param password 密码
      * @return Result
      */
-    Result<LoginResult> getSysUserByNameAndPassword(String username, String password);
+    Result<LoginUserResult> getSysUserByNameAndPassword(String username, String password);
 
     /**
      * 查询用户

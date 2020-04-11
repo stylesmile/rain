@@ -1,8 +1,7 @@
 package com.stylesmile.console.system.controller;
 
 
-import com.stylesmile.console.system.domain.LoginResult;
-import com.stylesmile.console.system.domain.LoginUserRequest;
+import com.stylesmile.console.system.domain.LoginUserResult;
 import com.stylesmile.console.system.service.SysMenuService;
 import com.stylesmile.console.system.service.SysUserService;
 import com.stylesmile.util.Result;
@@ -12,7 +11,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,7 +51,7 @@ public class IndexController {
             @ApiImplicitParam(name = "password", value = "密码", example = "111111", dataType = "String", required = true)
     })
     @RequestMapping("/login")
-    public Result<LoginResult> login(String username, String password) {
+    public Result<LoginUserResult> login(String username, String password) {
         return sysUserService.getSysUserByNameAndPassword(username, password);
     }
 
